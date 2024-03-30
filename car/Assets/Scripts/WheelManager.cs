@@ -6,19 +6,38 @@ public class WheelManager : MonoBehaviour
 {
     private Vector3 currentForce = Vector3.zero;
     private Vector3 lastFramePos;
-    private Vector3 currentVel = Vector3.zero;
+    private Vector3 currentVelGlobal = Vector3.zero;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         lastFramePos = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 
-        currentVel = 
+        currentVelGlobal = (transform.position - lastFramePos) / Time.deltaTime;
+
+        Debug.Log(currentVelGlobal);
 
         lastFramePos = transform.position;
+
+
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.1f)){
+            return;
+        }
+
+
+        Vector3 localVel = transform.InverseTransformDirection(currentVelGlobal);
+
+        float sidewaysForce = localVel.z;
+
+        Vector3 localForce = new Vector3(0, 0, -sidewaysForce);
+
+        Vector3 globalForce = transform.TransformDirection(localForce);
+
+        rb.AddForceAtPosition(globalForce, transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +53,6 @@ public class WheelManager : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        currentForce = Vector3.forward;
+
     }
 }
