@@ -33,11 +33,17 @@ public class WheelManager : MonoBehaviour
 
         float sidewaysForce = localVel.z;
 
-        Vector3 localForce = new Vector3(1, 0, -100f * sidewaysForce);
+        Debug.Log(sidewaysForce);
+
+        Vector3 localForce = new Vector3(1, 0, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
-        rb.AddForceAtPosition(globalForce, transform.position);
+        Vector3 que = new Vector3(0, -1f * sidewaysForce);
+
+        rb.AddForceAtPosition(globalForce, transform.position, ForceMode.Acceleration);
+
+        //rb.AddRelativeTorque(que);
     }
 
     private void OnTriggerEnter(Collider other)
