@@ -33,7 +33,7 @@ public class WheelManager : MonoBehaviour
 
         float sidewaysForce = localVel.z;
 
-        Vector3 localForce = new Vector3(0, 0, -sidewaysForce);
+        Vector3 localForce = new Vector3(1, 0, -100f * sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
