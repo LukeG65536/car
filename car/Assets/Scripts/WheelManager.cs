@@ -19,7 +19,7 @@ public class WheelManager : MonoBehaviour
 
         currentVelGlobal = (transform.position - lastFramePos) / Time.deltaTime;
 
-        Debug.Log(currentVelGlobal);
+        Debug.Log(transform.InverseTransformDirection(rb.velocity));
 
         lastFramePos = transform.position;
 
@@ -29,13 +29,15 @@ public class WheelManager : MonoBehaviour
         }
 
 
-        Vector3 localVel = transform.InverseTransformDirection(currentVelGlobal);
+        //Vector3 localVel = transform.InverseTransformDirection(currentVelGlobal);
+
+        Vector3 localVel = transform.InverseTransformDirection(rb.GetPointVelocity(transform.position));
 
         float sidewaysForce = localVel.z;
 
         Debug.Log(sidewaysForce);
 
-        Vector3 localForce = new Vector3(1, 0, -sidewaysForce);
+        Vector3 localForce = new Vector3(2, 0, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
@@ -43,17 +45,18 @@ public class WheelManager : MonoBehaviour
 
         rb.AddForceAtPosition(globalForce, transform.position, ForceMode.Acceleration);
 
+
         //rb.AddRelativeTorque(que);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger enter");
+        //Debug.Log("trigger enter");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("exit");
+        //Debug.Log("exit");
         currentForce = Vector3.zero;
     }
 
