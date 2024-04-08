@@ -37,7 +37,13 @@ public class WheelManager : MonoBehaviour
 
         Debug.Log(sidewaysForce);
 
-        Vector3 localForce = new Vector3(2, 0, -sidewaysForce);
+        float accel = Input.GetAxis("Vertical");
+
+        if (accel == 0) accel = -localVel.x * 0.1f;
+
+        accel = Mathf.Clamp(accel, -1, 1);
+
+        Vector3 localForce = new Vector3(2 * accel, 0, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
