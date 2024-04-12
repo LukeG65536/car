@@ -58,7 +58,7 @@ public class Steering : MonoBehaviour
     {
         Vector3 rot = wheel1.transform.localEulerAngles;
 
-        rot.y = tireAngle;
+        rot.y = 10;
 
         wheel1.transform.localEulerAngles = rot;
         wheel2.transform.localEulerAngles = rot;
