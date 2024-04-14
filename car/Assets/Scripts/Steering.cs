@@ -58,11 +58,11 @@ public class Steering : MonoBehaviour
     {
         Vector3 rot = wheel1.transform.localEulerAngles;
 
-        rot.y = 10;
+        rot.y = Input.GetAxis("Horizontal") * turnSpeed;
 
         wheel1.transform.localEulerAngles = rot;
         wheel2.transform.localEulerAngles = rot;
-        wheel3.transform.localEulerAngles = rot;
-        wheel4.transform.localEulerAngles = rot;
+        wheel3.transform.localEulerAngles = -rot;
+        wheel4.transform.localEulerAngles = -rot;
     }
 }

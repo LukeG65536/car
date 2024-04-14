@@ -10,9 +10,13 @@ public class CarMotionManager : MonoBehaviour
     public WheelManager BR;
     public WheelManager BL;
 
+    public float turn;
+
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
