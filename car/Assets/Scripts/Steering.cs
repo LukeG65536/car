@@ -28,24 +28,19 @@ public class Steering : MonoBehaviour
 
         float speed = transform.InverseTransformDirection(rb.velocity).x;
 
-        float rotPer2nd = Input.GetAxis("Horizontal") * turnSpeed;
-
-        if (rotPer2nd == 0)
-        {
-            tireAngle = 0;
-            Debug.Log("no Input");
-            return;
-        }
+        float rotPer2nd = 0.2f;
 
         float c = speed * rotPer2nd;
 
         float r = c / 2 * Mathf.PI;
 
-        float angleRad = Mathf.Atan2(2, r);
+        Debug.Log("speed, radius:  " + speed + ", " + r);
+
+        float angleRad = Mathf.Atan(2/r);
 
         tireAngle = Mathf.Rad2Deg * angleRad;
 
-        Debug.Log(tireAngle);
+        //Debug.Log(tireAngle);
     }
 
     private void FixedUpdate()
@@ -57,8 +52,11 @@ public class Steering : MonoBehaviour
     private void updateTires()
     {
         Vector3 rot = wheel1.transform.localEulerAngles;
+        
 
-        rot.y = Input.GetAxis("Horizontal") * turnSpeed;
+        float input = Input.GetAxis("Horizontal");
+
+        rot.y = input * turnSpeed * Mathf.Clamp(tireAngle, -20, 20) + input;
 
         wheel1.transform.localEulerAngles = rot;
         wheel2.transform.localEulerAngles = rot;

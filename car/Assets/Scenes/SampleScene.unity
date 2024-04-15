@@ -725,7 +725,7 @@ MonoBehaviour:
   wheel2: {fileID: 28082864}
   wheel3: {fileID: 2008346547}
   wheel4: {fileID: 1810929989}
-  turnSpeed: 10
+  turnSpeed: 0.3
   tireAngle: 0
 --- !u!1 &832575517
 GameObject:

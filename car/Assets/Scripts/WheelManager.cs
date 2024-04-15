@@ -23,11 +23,12 @@ public class WheelManager : MonoBehaviour
 
         lastFramePos = transform.position;
 
+        RaycastHit hit;
 
-        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.1f)){
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f)){
+            
             return;
         }
-
 
         //Vector3 localVel = transform.InverseTransformDirection(currentVelGlobal);
 
@@ -43,11 +44,10 @@ public class WheelManager : MonoBehaviour
 
         accel = Mathf.Clamp(accel, -1, 1);
 
-        Vector3 localForce = new Vector3(2 * accel, 0, -sidewaysForce);
+        Vector3 localForce = new Vector3(2 * accel, hit.distance*3, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
-        Vector3 que = new Vector3(0, -1f * sidewaysForce);
 
         rb.AddForceAtPosition(globalForce, transform.position, ForceMode.Acceleration);
 
@@ -59,7 +59,7 @@ public class WheelManager : MonoBehaviour
     {
         //Debug.Log("trigger enter");
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         //Debug.Log("exit");
