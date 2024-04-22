@@ -26,7 +26,7 @@ public class WheelManager : MonoBehaviour
         RaycastHit hit;
 
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f)){
-            
+             
             return;
         }
 
@@ -36,6 +36,8 @@ public class WheelManager : MonoBehaviour
 
         float sidewaysForce = localVel.z;
 
+        sidewaysForce *= (Input.GetKey(KeyCode.LeftShift) ? 0.2f : 1f);
+
         Debug.Log(sidewaysForce);
 
         float accel = Input.GetAxis("Vertical");
@@ -44,7 +46,7 @@ public class WheelManager : MonoBehaviour
 
         accel = Mathf.Clamp(accel, -1, 1) * (hit.distance < 1.2 ? 1:0);
 
-        Vector3 localForce = new Vector3(2 * accel, 1.5f-hit.distance-0.2f, -sidewaysForce);
+        Vector3 localForce = new Vector3(2 * accel, 1.5f-hit.distance, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 

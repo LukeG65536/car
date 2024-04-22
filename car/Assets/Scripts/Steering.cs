@@ -56,7 +56,7 @@ public class Steering : MonoBehaviour
 
         float input = Input.GetAxis("Horizontal");
 
-        rot.y = input * turnSpeed * Mathf.Clamp(tireAngle, -20, 20) + input;
+        rot.y = input * turnSpeed * Mathf.Clamp(tireAngle, -20, 20) + input/2;
 
         wheel1.transform.localEulerAngles = rot;
         wheel2.transform.localEulerAngles = rot;
