@@ -44,7 +44,7 @@ public class WheelManager : MonoBehaviour
 
         accel = Mathf.Clamp(accel, -1, 1) * (hit.distance < 1.2 ? 1:0);
 
-        Vector3 localForce = new Vector3(2 * accel, 1.5f-hit.distance-0.2f, -sidewaysForce);
+        Vector3 localForce = new Vector3(2 * accel, 0, -sidewaysForce);
 
         Vector3 globalForce = transform.TransformDirection(localForce);
 
