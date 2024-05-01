@@ -9,11 +9,17 @@ public class PlaySoundOnBonk : MonoBehaviour
 
     private void Start()
     {
+        clip.LoadAudioData();
         audioSource.clip = clip;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("Playing");
         audioSource.Play();
     }
 }

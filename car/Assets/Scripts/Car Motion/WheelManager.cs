@@ -19,7 +19,7 @@ public class WheelManager : MonoBehaviour
 
         currentVelGlobal = (transform.position - lastFramePos) / Time.deltaTime;
 
-        Debug.Log(transform.InverseTransformDirection(rb.velocity));
+        //Debug.Log(transform.InverseTransformDirection(rb.velocity));
 
         lastFramePos = transform.position;
 
@@ -39,7 +39,7 @@ public class WheelManager : MonoBehaviour
 
         sidewaysForce *= (Input.GetKey(KeyCode.LeftShift) ? 0.2f : 1f);
 
-        Debug.Log(sidewaysForce);
+        //Debug.Log(sidewaysForce);
 
         float accel = Input.GetAxis("Vertical");
 

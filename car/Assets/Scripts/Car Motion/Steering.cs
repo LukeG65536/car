@@ -34,7 +34,7 @@ public class Steering : MonoBehaviour
 
         float r = c / 2 * Mathf.PI;
 
-        Debug.Log("speed, radius:  " + speed + ", " + r);
+        //Debug.Log("speed, radius:  " + speed + ", " + r);
 
         float angleRad = Mathf.Atan(2/r);
 
