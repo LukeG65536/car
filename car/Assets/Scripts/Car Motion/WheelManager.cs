@@ -8,6 +8,7 @@ public class WheelManager : MonoBehaviour
     private Vector3 lastFramePos;
     private Vector3 currentVelGlobal = Vector3.zero;
     public Rigidbody rb;
+    public TrailRenderer tr;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,23 +19,24 @@ public class WheelManager : MonoBehaviour
     {
 
         currentVelGlobal = (transform.position - lastFramePos) / Time.deltaTime;
-
-        //Debug.Log(transform.InverseTransformDirection(rb.velocity));
-
+        
         lastFramePos = transform.position;
 
         RaycastHit hit;
 
-        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f))
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.03f))
         {
-
+            tr.emitting = false;
+            //tr.enabled = false;
             return;
         }
+
+        tr.emitting = true;
 
         //Vector3 localVel = transform.InverseTransformDirection(currentVelGlobal);
 
         Vector3 localVel = transform.InverseTransformDirection(rb.GetPointVelocity(transform.position));
-
+        
         float sidewaysForce = localVel.z;
 
         sidewaysForce *= (Input.GetKey(KeyCode.LeftShift) ? 0.2f : 1f);
@@ -54,6 +56,7 @@ public class WheelManager : MonoBehaviour
 
         rb.AddForceAtPosition(globalForce, transform.position, ForceMode.Acceleration);
 
+        //tr.enabled = true;
 
         //rb.AddRelativeTorque(que);
     }
