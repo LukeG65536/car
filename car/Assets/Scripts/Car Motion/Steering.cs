@@ -2,9 +2,10 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Steering : MonoBehaviour
+public class Steering : NetworkBehaviour
 {
     public GameObject wheel1;
     public GameObject wheel2;
@@ -19,12 +20,19 @@ public class Steering : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
+        if (!IsOwner)
+        {
+            gameObject.GetComponentInChildren<Camera>().enabled = false;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
 
         float speed = transform.InverseTransformDirection(rb.velocity).x;
 

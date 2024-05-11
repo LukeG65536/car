@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class WheelManager : MonoBehaviour
+public class WheelManager : NetworkBehaviour
 {
     private Vector3 currentForce = Vector3.zero;
     private Vector3 lastFramePos;
@@ -17,6 +18,7 @@ public class WheelManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner) return;
 
         currentVelGlobal = (transform.position - lastFramePos) / Time.deltaTime;
         
