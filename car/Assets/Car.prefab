@@ -1543,5 +1543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2f01af4f1ce28409d45e84ed1938b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ff6aaaf0b1299c349909388530645920, type: 2}
+  mat: {fileID: 2100000, guid: 9182b261ff6dcd9439c032786840e845, type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
+  meshRenderers:
+  - {fileID: 8717621638817656994}
+  - {fileID: 268808144360773691}
+  - {fileID: 7211379128824785535}
+  - {fileID: 3964828595219390194}
