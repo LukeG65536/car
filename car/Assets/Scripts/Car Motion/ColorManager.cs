@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +35,7 @@ public class ColorManager : NetworkBehaviour
         setColorServerRpc(color.r, color.g, color.b, NetworkObjectId);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership =false)]
     public void setColorServerRpc(float r, float g, float b,ulong id)
     {
         setColorClientRpc(r, g, b, id);
