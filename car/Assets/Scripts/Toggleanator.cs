@@ -19,7 +19,6 @@ public class Toggleanator : MonoBehaviour
         if (Input.GetKeyDown(key))
         {
             current = !current;
-            Debug.Log(current);
             foreach(var obj in transform.GetComponentsInChildren<Button>())
             {
                 obj.enabled = current;

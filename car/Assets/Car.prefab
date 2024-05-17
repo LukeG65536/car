@@ -1271,6 +1271,7 @@ GameObject:
   - component: {fileID: 6022027672360588526}
   - component: {fileID: 5587391147805797078}
   - component: {fileID: 1537509430842817534}
+  - component: {fileID: 3718944259547994044}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -1550,3 +1551,23 @@ MonoBehaviour:
   - {fileID: 268808144360773691}
   - {fileID: 7211379128824785535}
   - {fileID: 3964828595219390194}
+--- !u!114 &3718944259547994044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169172182754765500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6069f2b8d57b9c04d9251ff135466a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  board: {fileID: 0}
+  globalBest: 9999
+  bestTime: 9999
+  inRace: 0
+  currentTime: 0
+  multiplayer: 0
+  colorManager: {fileID: 1537509430842817534}

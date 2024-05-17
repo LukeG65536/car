@@ -25,7 +25,7 @@ public class Respawnanator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Delete)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void respawn()
+    public void respawn()
     {
         if (currentCP == null)
         {

@@ -6,6 +6,12 @@ public class CP : MonoBehaviour
 {
     public Vector3 offset;
 
+    public bool start;
+
+    public bool finish;
+
+    public Timer timer;
+
     public Vector3 getCPPos()
     {
         return transform.position + offset;
@@ -13,9 +19,15 @@ public class CP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.tag == "Player")
         {
-            other.transform.parent.gameObject.GetComponent<Respawnanator>().currentCP = this;
+            Respawnanator respawnanator = other.transform.parent.gameObject.GetComponent<Respawnanator>();
+            if(!finish)respawnanator.currentCP = this;
+            //respawnanator.respawn();
+            
+            if (start) timer.startRace();
+            if (finish) timer.endRace();
         }
     }
 }
