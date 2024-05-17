@@ -41,8 +41,10 @@ public class Timer : NetworkBehaviour
 
     public void endRace()
     {
-        if (!IsOwner) return;
-
+        if (!IsOwner)
+        {
+            return;
+        }
         
         inRace = false;
 
@@ -55,6 +57,7 @@ public class Timer : NetworkBehaviour
 
             if(bestTime < globalBest)
             {
+
                 updateGlobalTimeServerRpc(colorManager.color.r, colorManager.color.g, colorManager.color.b, bestTime);
             }
         }
@@ -72,6 +75,11 @@ public class Timer : NetworkBehaviour
     public void updateGlobalTimeClientRpc(float r, float g, float b, float time)
     {
         globalBest = time;
+        foreach(var obj in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (obj.name != "Car(Clone)") continue;
+            obj.GetComponent<Timer>().globalBest = time;
+        }
         board.text = "Best Time" + time.ToString();
         board.color = new Color(r, g, b);
     }
