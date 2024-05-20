@@ -178,4 +178,18 @@ public class LobbyManager : NetworkBehaviour
             }
         }
     }
+
+
+    public async void leaveLobby()
+    {
+        try
+        {
+            if(IsClient) await LobbyService.Instance.RemovePlayerAsync(hostLobby.Id, AuthenticationService.Instance.PlayerId);
+            if(IsHost) await LobbyService.Instance.DeleteLobbyAsync(hostLobby.Id);  NetworkManager.Singleton.Shutdown(); 
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
 }
