@@ -428,6 +428,8 @@ MonoBehaviour:
   start: 1
   finish: 0
   timer: {fileID: 0}
+  timer2: {fileID: 0}
+  multiplayer: 1
 --- !u!65 &184335599
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -955,6 +957,8 @@ MonoBehaviour:
   start: 0
   finish: 1
   timer: {fileID: 0}
+  timer2: {fileID: 0}
+  multiplayer: 1
 --- !u!65 &513399127
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -80,7 +80,7 @@ public class Timer : NetworkBehaviour
             if (obj.name != "Car(Clone)") continue;
             obj.GetComponent<Timer>().globalBest = time;
         }
-        board.text = "Best Time" + time.ToString();
+        board.text = "Best Time: " + time.ToString();
         board.color = new Color(r, g, b);
     }
 

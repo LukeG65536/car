@@ -13,6 +13,10 @@ public class CP : NetworkBehaviour
 
     public Timer timer;
 
+    public NonMultiTimer timer2;
+
+    public bool multiplayer;
+
     public Vector3 getCPPos()
     {
         return transform.position + offset;
@@ -23,6 +27,17 @@ public class CP : NetworkBehaviour
         
         if(other.gameObject.tag == "Player")
         {
+            if(!multiplayer)
+            {
+                Respawnanator respawnanator2 = other.transform.parent.gameObject.GetComponent<Respawnanator>();
+
+                if (!finish) respawnanator2.currentCP = this;
+
+                if (start) timer2.startRace();
+                if (finish) timer2.endRace();
+                return;
+            }
+
             Respawnanator respawnanator = other.transform.parent.gameObject.GetComponent<Respawnanator>();
             if(!finish)respawnanator.currentCP = this;
             //respawnanator.respawn();
