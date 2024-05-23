@@ -33,9 +33,11 @@ public class Respawnanator : MonoBehaviour
             return;
         }
 
+        currentCP.timer.currentTime = 0f;
+
         transform.position = currentCP.getCPPos();
 
-        transform.rotation = new Quaternion();
+        transform.rotation = currentCP.transform.rotation;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
